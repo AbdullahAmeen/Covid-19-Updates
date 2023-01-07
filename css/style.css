@@ -25,8 +25,8 @@
 .leaflet-control-layers{
     background-color: #282829;
     color: white;
-    width: 151px;
-    height: 120px;
+    width: 145px;
+    height: 115px;
     opacity: 0.8;
       
 }
@@ -67,6 +67,7 @@
 .legend{
     height: 210px;
     width: 160PX;
+    margin-top: 10px;
    
  }
 
