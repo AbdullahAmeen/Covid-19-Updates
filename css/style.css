@@ -26,7 +26,7 @@
     background-color: #282829;
     color: white;
     width: 145px;
-    height: 115px;
+    height: 110px;
     opacity: 0.8;
       
 }
@@ -135,7 +135,7 @@
 }
 
 .leaflet-bottom{
-    margin-right: -9px;
+    margin-right: -10px;
 
 
 }
