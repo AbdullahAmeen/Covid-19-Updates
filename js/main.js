@@ -8,7 +8,7 @@ var key = 'cKCnQalXEAt2mhner6ln'; // this tile is taken from Maptiler
 var streetsmap = L.tileLayer(`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${key}`,{
         maxZoom: 22,
         minZoom: 1,
-        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a> |&nbsp Analyzed and Mapped By: Abdullah Ameen | Date: 12/31/2022 ",
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a>\  <a href=\"https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html\" target=\"_blank\"> <spam class='attributes'> & Census</spam> </a> |&nbsp Analyzed and Mapped By: Abdullah Ameen | Date: 12/31/2022 &nbsp ",
         crossOrigin: true
       }).addTo(map);
 
@@ -32,11 +32,11 @@ var Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercol
 //Adding geoJason and dispay information in popup
 function coivd19cases (feature, layer) {
   layer.bindPopup ("<span class='headings'>State: </span>" + feature.properties.NAME +"<br>" + 
-  "<span class='headings'>Total Population: </span>" + feature.properties.Population +"<br>" + 
+  "<span class='headings'>Total Population: </span>" + feature.properties.TotalPop +"<br>" + 
   "<span class='headings'>Total Covid-19 Cases: </span>" + feature.properties.Covid19Cas +"<br>" + 
   "<span class='headings'>Total Recovered: </span>" + feature.properties.Recovered +"<br>" +
    "<span class='headings'>Total Deaths: </span>" + feature.properties.DethTotal +"<br>" + "<span class='headings'> Death Rate: </span>"+
-   feature.properties.MortalityR.toFixed(2)+"% " + "<small class='smalltext'> (Total Deaths)/(Total Cases) * 100</small>" )
+   feature.properties.MortalityR.toFixed(2) + "<small class='smalltext'> (Deaths)/(Population)* 100k</small>" )
 
 };
 
@@ -83,7 +83,7 @@ legend.addTo(map);
 
 
 // Layer controle and adding geojason
-var states = L.geoJson(statepopulation1, {style:style,
+var states = L.geoJson(statepopulation2, {style:style,
    onEachFeature:coivd19cases,
    
   
