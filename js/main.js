@@ -1,8 +1,6 @@
 
 // Set the map view by using the L.map funciton. 
-var map = L.map('map', {
-    attributionControl: false
-}).setView([34.1, -96], 4);
+var map = L.map('map').setView([34.1, -96], 4);
 
 //Here I am going to add multiple tiles to my map as base maps. Giving users the options to select a base map of thier choice.
 
@@ -29,10 +27,6 @@ var Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercol
 	minZoom: 1,
 	maxZoom: 16,
 	ext: 'jpg'
-}).addTo(map);
-
-L.control.attribution({
-  position: 'bottomleft'
 }).addTo(map);
 
 //Adding geoJason and dispay information in popup
