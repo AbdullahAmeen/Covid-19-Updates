@@ -82,26 +82,6 @@ legend.onAdd = function (map) {
 
 legend.addTo(map);
 
-var totalcase = L.control({position: 'topleft'});
-
-totalcase.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend'),
-        grades = [""],
-        labels = ["images/totalcases.png class='totalcase'"];
-
-    // loop through our density intervals and generate a label with a colored square for each interval
-    for (var i = 0; i < grades.length; i++) {
-        div.innerHTML +=
-            grades[i] + (" <img src="+ labels[i]) +'<br>';
-    }
-
-    return div;
-};
-
-totalcase.addTo(map);
-
-
 // Layer controle and adding geojason
 var states = L.geoJson(statepopulation2, {style:style,
    onEachFeature:coivd19cases,
