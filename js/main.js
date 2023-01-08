@@ -1,6 +1,6 @@
 
 // Set the map view by using the L.map funciton. 
-var map = L.map('map').setView([34.1, -96], 4);
+var map = L.map('map', {}).setView([34.1, -96], 4);
 
 //Here I am going to add multiple tiles to my map as base maps. Giving users the options to select a base map of thier choice.
 
