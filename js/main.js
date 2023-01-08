@@ -1,6 +1,8 @@
 
 // Set the map view by using the L.map funciton. 
-var map = L.map('map').setView([34.1, -96], 4);
+var map = L.map('map', {
+    attributionControl: false
+}).setView([34.1, -96], 4);
 
 //Here I am going to add multiple tiles to my map as base maps. Giving users the options to select a base map of thier choice.
 
@@ -8,7 +10,7 @@ var key = 'cKCnQalXEAt2mhner6ln'; // this tile is taken from Maptiler
 var streetsmap = L.tileLayer(`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${key}`,{
         maxZoom: 22,
         minZoom: 1,
-        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a>\  <a href=\"https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html\" target=\"_blank\"> <spam class='attributes'> & Census</spam> </a> |&nbsp Analyzed and Mapped By: Abdullah Ameen | Date: 12/31/2022 &nbsp ",
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a>\  <a href=\"https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html\" target=\"_blank\"> <spam class='attributes'> & Census</spam> </a> &nbsp;",
         crossOrigin: true
       }).addTo(map);
 
@@ -29,6 +31,10 @@ var Watercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercol
 	ext: 'jpg'
 }).addTo(map);
 
+L.control.attribution({
+  position: 'bottomleft'
+}).addTo(map);
+
 //Adding geoJason and dispay information in popup
 function coivd19cases (feature, layer) {
   layer.bindPopup ("<span class='headings'>State: </span>" + feature.properties.NAME +"<br>" + 
@@ -40,15 +46,16 @@ function coivd19cases (feature, layer) {
 
 };
 
+
 // Making the Choropleth map
 
 function getColor(d) {
-		return d > 3000000 ? '#7a0177' :
-          d > 2000000 ? '#ae017e' :
-          d > 900000  ? '#dd3497' :
-          d > 700000  ? '#f768a1' :
-          d > 400000  ? '#fa9fb5' :
-          d > 150000  ? '#fcc5c0' :
+		return d > 440 ? '#7a0177' :
+          d > 398 ? '#ae017e' :
+          d > 365  ? '#dd3497' :
+          d > 338  ? '#f768a1' :
+          d > 270  ? '#fa9fb5' :
+          d > 124  ? '#fcc5c0' :
                         '#feebe2';
 	}
 function style(feature) {
@@ -57,7 +64,7 @@ function style(feature) {
 			opacity: 1,
 			color: 'white',
 			fillOpacity: 0.8,
-			fillColor: getColor(feature.properties.Covid19Cas)
+			fillColor: getColor(feature.properties.MortalityR)
 		};
 	}
 
@@ -80,6 +87,25 @@ legend.onAdd = function (map) {
 };
 
 legend.addTo(map);
+
+var totalcase = L.control({position: 'topleft'});
+
+totalcase.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [""],
+        labels = ["images/totalcases.png class='totalcase'"];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML +=
+            grades[i] + (" <img src="+ labels[i]) +'<br>';
+    }
+
+    return div;
+};
+
+totalcase.addTo(map);
 
 
 // Layer controle and adding geojason
@@ -124,3 +150,4 @@ L.control.layers(overlays, baseLayers,{collapsed:false}).addTo(map);
 function highlightLayer(feature) {
     map._layers['name'+LayerID].setStyle(highlight);
 }
+

@@ -66,13 +66,14 @@
 
 .legend{
     height: 210px;
-    width: 160PX;
-    margin-top: 10px;
+    width: 170PX;
+    margin-top: 13px;
+    margin-left: 21px;
    
  }
 
 .info.legend {
-    margin-bottom: 15px;
+    margin-bottom: 45px;
     margin-right: 15px;
     
 }
@@ -137,5 +138,12 @@
 .leaflet-bottom{
     margin-right: -10px;
 
+}
 
+.totalcase{
+    width: 210px;
+    height: 130px;
+    margin-top: 498px;
+    margin-left: 130px;
+  
 }
