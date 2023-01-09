@@ -36,7 +36,7 @@ function coivd19cases (feature, layer) {
   "<span class='headings'>Total Covid-19 Cases: </span>" + feature.properties.Covid19Cas +"<br>" + 
   "<span class='headings'>Total Recovered: </span>" + feature.properties.Recovered +"<br>" +
    "<span class='headings'>Total Deaths: </span>" + feature.properties.DethTotal +"<br>" + "<span class='headings'> Death Rate: </span>"+
-   feature.properties.MortalityR.toFixed(0) + "<small class='smalltext'> &nbsp (Deaths)/(Population) * 100k</small>" )
+   feature.properties.MortalityR.toFixed(0) + "<small class='smalltext'> &nbsp (Per 100,000 Population)</small>" )
 
 };
 
