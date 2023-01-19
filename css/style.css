@@ -64,6 +64,19 @@
     font-variant: small-caps;
 }
 
+.description{
+    font-size: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    color: white;
+    margin-left: 30px;
+    margin-right: 30px;
+    padding: 5px;
+    font-variant: small-caps;
+
+}
+
 .legend{
     height: 210px;
     width: 179pX;

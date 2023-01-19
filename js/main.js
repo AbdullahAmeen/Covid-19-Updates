@@ -8,7 +8,7 @@ var key = 'cKCnQalXEAt2mhner6ln'; // this tile is taken from Maptiler
 var streetsmap = L.tileLayer(`https://api.maptiler.com/maps/streets-v2/{z}/{x}/{y}.png?key=${key}`,{
         maxZoom: 22,
         minZoom: 1,
-        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a>\  <a href=\"https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html\" target=\"_blank\"> <spam class='attributes'> & Census</spam> </a> &nbsp;",
+        attribution: "\u003ca href=\"https://www.maptiler.com/copyright/\" target=\"_blank\"\u003e\ <spam class='attributes'> MapTiler | </spam>  \u003ca href=\"https://www.google.com/maps\" target=\"_blank\"\u003e\ <spam class='attributes '> Google Maps |</spam>\u003c/a\u003e \u003ca href=\"https://www.openstreetmap.org/copyright\" target=\"_blank\"  &nbsp;<a href=\"https://www.worldometers.info/coronavirus/country/us/\" target=\"_blank\"> <spam class='attributes'>Data Source :Worldometer</spam> </a>\  <a href=\"https://www.census.gov/data/tables/time-series/demo/popest/2020s-state-total.html\" target=\"_blank\"> <spam class='attributes'> & Census</spam> </a> &nbsp; ",
         crossOrigin: true
       }).addTo(map);
 
@@ -37,6 +37,20 @@ function coivd19cases (feature, layer) {
   "<span class='headings'>Total Recovered: </span>" + feature.properties.Recovered +"<br>" +
    "<span class='headings'>Total Deaths: </span>" + feature.properties.DethTotal +"<br>" + "<span class='headings'> Death Rate: </span>"+
    feature.properties.MortalityR.toFixed(0) + "<small class='smalltext'> &nbsp (Per 100,000 Population)</small>" )
+
+   layer.on('mouseover', function(e) {
+        e.target.setStyle({
+            weight: 2,
+            color: 'black',
+        });
+    });
+    layer.on('mouseout', function(e) {
+        e.target.setStyle({
+            weight: 1,
+            color: 'white',
+            
+        });
+    });
 
 };
 
